@@ -30,8 +30,8 @@ function pedirNotas() {
     }
 }
 
-function comprobarRangoNumero(nota1) {
-    return nota1 < 0 || nota1 > 10;
+function comprobarRangoNumero(nota) {
+    return nota < 0 || nota > 10;
 }
 
 function hacerMedia() {
