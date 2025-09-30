@@ -1,5 +1,6 @@
 console.log('Happy developing ✨');
 
+
 document.addEventListener("DOMContentLoaded", () => {
     console.log("La página ha cargado");
 
@@ -7,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (PromptOInput) {
         pedirNotas();
         mostrarNotasPorConsola();
-        mostrarNotas();
+        mostrarNotasPrompt();
         hacerMedia();
         mostrarMediaPorConsola();
         mostrarResultado();
@@ -33,42 +34,56 @@ function pedirNotaPorInput() {
                          <button onclick="hacerMediaConInput()">Calcular Media</button>`;
 }
 
+function validarNotas() {
+    if (comprobarNumero(nota1)) {
+        mostrar.innerHTML = "Error en la nota 1: Se debe introducir un número entre 0 y 10";
+        return false;
+    }
+    if (comprobarNumero(nota2)) {
+        mostrar.innerHTML = "Error en la nota 2: Se debe introducir un número entre 0 y 10";
+        return false;
+    }
+    if (comprobarNumero(nota3)) {
+        mostrar.innerHTML = "Error en la nota 3: Se debe introducir un número entre 0 y 10";
+        return false;
+    }
+    if (comprobarNumero(nota4)) {
+        mostrar.innerHTML = "Error en la nota 4: Se debe introducir un númeor entre 0 y 10";
+        return false;
+    }
+    return true;
+}
+
 function hacerMediaConInput() {
     nota1 = Number(document.getElementById('nota1').value);
     nota2 = Number(document.getElementById('nota2').value);
     nota3 = Number(document.getElementById('nota3').value);
     nota4 = Number(document.getElementById('nota4').value);
-    if (!comprobarNumero(nota1)) {
-        mostrar.innerHTML = "Error en la nota 1: Se debe introducir un número entre 0 y 10";
-        return;
-    }
-    if (!comprobarNumero(nota2)) {
-        mostrar.innerHTML = "Error en la nota 2: Se debe introducir un número entre 0 y 10";
-        return;
-    }
-    if (!comprobarNumero(nota3)) {
-        mostrar.innerHTML = "Error en la nota 3: Se debe introducir un número entre 0 y 10";
-        return;
-    }
-    if (!comprobarNumero(nota4)) {
-        mostrar.innerHTML = "Error en la nota 4: Se debe introducir un númeor entre 0 y 10";
-        return;
-    }
+    if(!validarNotas())return;
+
 
     hacerMedia();
-    mostrarNotas();
+    mostrarNotasInput();
     mostrarNotasPorConsola();
     mostrarMediaPorConsola();
     mostrarResultado();
 }
 
 
-function mostrarNotas() {
+function mostrarNotasInput() {
     mostrar.innerHTML = `Las notas introducidas son: <br>
                          nota 1 = ${nota1}<br>
                          nota 2 = ${nota2}<br>
                          nota 3 = ${nota3}<br>
                          nota 4 = ${nota4}<br>`;
+}
+
+function mostrarNotasPrompt() {
+    mostrar.innerHTML = `Las notas introducidas son: <br>
+                         nota 1 = ${nota1}<br>
+                         nota 2 = ${nota2}<br>
+                         nota 3 = ${nota3}<br>
+                         nota 4 = ${nota4}<br>`
 }
 
 function mostrarMediaPorConsola() {
@@ -91,7 +106,7 @@ function pedirNotas() {
 }
 
 function comprobarNumero(nota) {
-    return nota < 0 || nota > 10 || isNaN(nota);
+    return isNaN(nota) || nota < 0 || nota > 10;
 }
 
 function hacerMedia() {
@@ -100,15 +115,19 @@ function hacerMedia() {
 
 function mostrarResultado() {
 
-    if (media < 5){
-        mostrar.innerHTML += `El alumno suspendió con media de ${media}`;
-    } else if (media < 7) {
-        mostrar.innerHTML += `El alumno aprobó con una nota suficiente: ${media}`;
-    } else if (media < 9) {
-        mostrar.innerHTML += `El alumno aprobó con una nota buena: ${media}`;
-    } else {
-        mostrar.innerHTML += `El alumno aprobó con un sobresaliente: ${media}`;
-    }
+        if (media < 5) {
+            mostrar.innerHTML += `El alumno suspendió con media de ${media}`;
+        }
+        if (media >= 5 && media < 7) {
+            mostrar.innerHTML += `El alumno aprobó con un bien: ${media}`;
+        }
+        if (media >= 7 && media < 9) {
+            mostrar.innerHTML += `El alumno aprobó con un notable: ${media}`;
+        }
+        if (media >= 9 && media <= 10){
+            mostrar.innerHTML += `El alumno aprobó con un sobresaliente: ${media}`;
+        }
+
 }
 
 function mostrarNotasPorConsola() {
