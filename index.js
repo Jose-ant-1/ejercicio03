@@ -1,6 +1,5 @@
 console.log('Happy developing ✨');
 
-
 document.addEventListener("DOMContentLoaded", () => {
     console.log("La página ha cargado");
 
@@ -69,7 +68,6 @@ function hacerMediaConInput() {
     mostrarResultado();
 }
 
-
 function mostrarNotasInput() {
     mostrar.innerHTML = `Las notas introducidas son: <br>
                          nota 1 = ${nota1}<br>
@@ -114,7 +112,7 @@ function hacerMedia() {
 }
 
 function mostrarResultado() {
-
+/*
         if (media < 5) {
             mostrar.innerHTML += `El alumno suspendió con media de ${media}`;
         }
@@ -125,6 +123,18 @@ function mostrarResultado() {
             mostrar.innerHTML += `El alumno aprobó con un notable: ${media}`;
         }
         if (media >= 9 && media <= 10){
+            mostrar.innerHTML += `El alumno aprobó con un sobresaliente: ${media}`;
+        }
+*/
+        if (media < 5){
+            mostrar.innerHTML += `El alumno suspendió con media de ${media}`;
+        }
+        if (media < 7) {
+            mostrar.innerHTML += `El alumno aprobó con una nota suficiente: ${media}`;
+        }
+        if (media < 9) {
+            mostrar.innerHTML += `El alumno aprobó con una nota buena: ${media}`;
+        } else {
             mostrar.innerHTML += `El alumno aprobó con un sobresaliente: ${media}`;
         }
 
